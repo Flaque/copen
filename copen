@@ -1,0 +1,16 @@
+#!/bin/bash
+# 
+# Fuzzy opener for visual studio code based on autojump.
+# 
+# Usage: 
+# $ copen dogs
+#
+
+place=$(autojump $1 2>&1 | sponge )
+
+if [ -z "$place" ] || [ "$place" == "." ] 
+then
+    >&2 echo "No path for $1"
+else
+    code $place
+fi
